@@ -36,4 +36,9 @@ public class ZhihuRepository implements BaseRepository{
         Query query=new Query(Criteria.where("link").is(link));
         mongoTemplate.remove(query, ZhihuEntity.class);
     }
+
+    @Override
+    public void dropAll() {
+        mongoTemplate.dropCollection(ZhihuEntity.class);
+    }
 }

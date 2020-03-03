@@ -10,4 +10,6 @@ public interface BaseRepository {
     void updateEntity(BaseEntity baseEntity);
 
     void deleteEntityByLink(String link);
+
+    void dropAll();
 }

@@ -20,8 +20,8 @@ public class V2Repository implements BaseRepository {
 
     @Override
     public V2Entity findEntityByLink(String link) {
-        Query query=new Query(Criteria.where("link").is(link));
-        V2Entity v2e =  mongoTemplate.findOne(query , V2Entity.class);
+        Query query = new Query(Criteria.where("link").is(link));
+        V2Entity v2e = mongoTemplate.findOne(query, V2Entity.class);
         return v2e;
     }
 
@@ -32,8 +32,13 @@ public class V2Repository implements BaseRepository {
 
     @Override
     public void deleteEntityByLink(String link) {
-        Query query=new Query(Criteria.where("link").is(link));
+        Query query = new Query(Criteria.where("link").is(link));
         mongoTemplate.remove(query, V2Entity.class);
+    }
+
+    @Override
+    public void dropAll() {
+        mongoTemplate.dropCollection(V2Entity.class);
     }
 
 }
