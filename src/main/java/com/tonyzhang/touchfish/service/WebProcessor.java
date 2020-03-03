@@ -1,15 +1,12 @@
 package com.tonyzhang.touchfish.service;
 
-import com.tonyzhang.touchfish.domain.v2Entity;
+import com.tonyzhang.touchfish.entity.V2Entity;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.selector.Selectable;
 
-import java.util.List;
-
-public class webProcessor implements PageProcessor {
+public class WebProcessor implements PageProcessor {
 
     private Site site = Site.me()
             .setDomain("www.v2ex.com")
@@ -25,7 +22,7 @@ public class webProcessor implements PageProcessor {
             String fullContent = page.getHtml().xpath(xPath).toString();
             String title = fullContent.replaceAll("<a[^>]*>", "").replaceAll("</a>", "");
             String link = page.getHtml().xpath(xPath).links().toString();
-            v2Entity v2e = new v2Entity();
+            V2Entity v2e = new V2Entity();
             v2e.setTitle(title);
             v2e.setInfo(title);
             v2e.setLink(link);
@@ -39,9 +36,9 @@ public class webProcessor implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        Spider spider = Spider.create(new webProcessor());
+        Spider spider = Spider.create(new WebProcessor());
         spider.addUrl("http://www.v2ex.com/?tab=tech");
-        spider.addPipeline(new webPipeline());
+        spider.addPipeline(new WebPipeline());
         spider.thread(5);
         spider.setExitWhenComplete(true);
         spider.start();

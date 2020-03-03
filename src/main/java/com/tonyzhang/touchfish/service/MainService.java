@@ -10,17 +10,17 @@ import java.util.Date;
 
 
 @Service
-public class mainService {
+public class MainService {
 
     @Autowired
-    private webPipeline wp;
+    private WebPipeline wp;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(cron = "0 0/1 * * * *")
     public void scheduled(){
         System.out.println("----Mission Start : " + dateFormat.format(new Date()));
-        Spider spider = Spider.create(new webProcessor());
+        Spider spider = Spider.create(new WebProcessor());
         spider.addUrl("http://www.v2ex.com/?tab=tech");
         spider.addPipeline(wp);
         spider.thread(5);
