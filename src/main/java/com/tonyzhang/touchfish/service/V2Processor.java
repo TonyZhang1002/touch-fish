@@ -6,7 +6,7 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-public class WebProcessor implements PageProcessor {
+public class V2Processor implements PageProcessor {
 
     private Site site = Site.me()
             .setDomain("www.v2ex.com")
@@ -47,7 +47,7 @@ public class WebProcessor implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        Spider spider = Spider.create(new WebProcessor());
+        Spider spider = Spider.create(new V2Processor());
         spider.addUrl("http://www.v2ex.com/?tab=hot");
         spider.addPipeline(new WebPipeline());
         spider.thread(5);

@@ -2,7 +2,7 @@ package com.tonyzhang.touchfish.entity;
 
 import java.io.Serializable;
 
-public class V2Entity implements Serializable, BaseEntity {
+public class ZhihuEntity implements Serializable, BaseEntity {
     @Override
     public String getTitle() {
         return title;
@@ -23,14 +23,6 @@ public class V2Entity implements Serializable, BaseEntity {
         this.info = info;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     @Override
     public String getLink() {
         return link;
@@ -43,6 +35,5 @@ public class V2Entity implements Serializable, BaseEntity {
 
     private String title;
     private String info;
-    private String author;
     private String link;
 }

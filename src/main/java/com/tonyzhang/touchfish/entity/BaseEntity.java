@@ -9,10 +9,6 @@ public interface BaseEntity {
 
     void setInfo(String info);
 
-    String getAuthor();
-
-    void setAuthor(String author);
-
     String getLink();
 
     void setLink(String link);

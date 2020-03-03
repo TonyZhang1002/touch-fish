@@ -1,7 +1,9 @@
 package com.tonyzhang.touchfish.service;
 
 import com.tonyzhang.touchfish.entity.V2Entity;
+import com.tonyzhang.touchfish.entity.ZhihuEntity;
 import com.tonyzhang.touchfish.repository.V2Repository;
+import com.tonyzhang.touchfish.repository.ZhihuRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,25 @@ public class WebPipeline implements Pipeline {
     @Autowired
     V2Repository v2Repository;
 
+    @Autowired
+    ZhihuRepository zhihuRepository;
+
     @Override
     public void process(ResultItems resultItems, Task task) {
         for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
             if (entry.getKey().contains("v2Ex")) {
                 V2Entity v2e = (V2Entity) entry.getValue();
                 if (v2Repository.findEntityByLink(v2e.getLink()) == null && !v2e.getLink().equals("")) {
-                    logger.info("Entity found, not in database, entity will be saved, title: {} \t Link: {}", v2e.getTitle(), v2e.getLink());
+                    logger.info("Entity found (v2ex), not in database, entity will be saved, title: {} \t Link: {}", v2e.getTitle(), v2e.getLink());
                     v2Repository.saveEntity(v2e);
+                } else {
+                    logger.info("Entity already stored in database or not found in the web page, aborted.");
+                }
+            } else if (entry.getKey().contains("zhihu")) {
+                ZhihuEntity zhihu = (ZhihuEntity) entry.getValue();
+                if (zhihuRepository.findEntityByLink(zhihu.getLink()) == null && zhihu.getLink() != null) {
+                    logger.info("Entity found (zhihu), not in database, entity will be saved, title: {} \t Link: {}", zhihu.getTitle(), zhihu.getLink());
+                    zhihuRepository.saveEntity(zhihu);
                 } else {
                     logger.info("Entity already stored in database or not found in the web page, aborted.");
                 }
