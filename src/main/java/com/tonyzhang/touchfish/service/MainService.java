@@ -1,5 +1,6 @@
 package com.tonyzhang.touchfish.service;
 
+import com.tonyzhang.touchfish.repository.HupuRepository;
 import com.tonyzhang.touchfish.repository.V2Repository;
 import com.tonyzhang.touchfish.repository.ZhihuRepository;
 import org.slf4j.Logger;
@@ -22,30 +23,45 @@ public class MainService {
     private WebPipeline wp;
 
     @Autowired
-    private ZhihuRepository zr;
+    private ZhihuRepository zhihuRepository;
 
     @Autowired
-    private V2Repository vr;
+    private V2Repository v2Repository;
+
+    @Autowired
+    private HupuRepository hupuRepository;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "0 0/1 * * * *")
-    public void scheduled() {
-        logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new V2Processor());
-        spider.addUrl("http://www.v2ex.com/?tab=hot");
-        spider.addPipeline(wp);
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-        spider.stop();
-    }
+//    @Scheduled(cron = "0 0/1 * * * *")
+//    public void scheduled() {
+//        logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
+//        Spider spider = Spider.create(new V2Processor());
+//        spider.addUrl("http://www.v2ex.com/?tab=hot");
+//        spider.addPipeline(wp);
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//        spider.stop();
+//    }
+//
+//    @Scheduled(cron = "0 0/1 * * * *")
+//    public void scheduledZhihu() {
+//        logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
+//        Spider spider = Spider.create(new ZhihuProcessor());
+//        spider.addUrl("http://www.zhihu.com/billboard");
+//        spider.addPipeline(wp);
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//        spider.stop();
+//    }
 
     @Scheduled(cron = "0 0/1 * * * *")
-    public void scheduledZhihu() {
-        logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new ZhihuProcessor());
-        spider.addUrl("http://www.zhihu.com/billboard");
+    public void scheduledHupu() {
+        logger.info("----Mission Start for hupu : {}", dateFormat.format(new Date()));
+        Spider spider = Spider.create(new HupuProcessor());
+        spider.addUrl("http://bbs.hupu.com/all-gambia");
         spider.addPipeline(wp);
         spider.thread(5);
         spider.setExitWhenComplete(true);
@@ -56,12 +72,12 @@ public class MainService {
     @Scheduled(cron = "0 0 0 * * *")
     public void dropV2() {
         logger.info("Time now : {}, v2ex collection will be dropped.", dateFormat.format(new Date()));
-        vr.dropAll();
+        v2Repository.dropAll();
     }
 
     @Scheduled(cron = "0 0 0 * * *")
     public void dropZhihu() {
         logger.info("Time now : {}, zhihu collection will be dropped.", dateFormat.format(new Date()));
-        zr.dropAll();
+        zhihuRepository.dropAll();
     }
 }

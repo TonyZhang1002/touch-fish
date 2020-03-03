@@ -1,7 +1,9 @@
 package com.tonyzhang.touchfish.service;
 
+import com.tonyzhang.touchfish.entity.HupuEntity;
 import com.tonyzhang.touchfish.entity.V2Entity;
 import com.tonyzhang.touchfish.entity.ZhihuEntity;
+import com.tonyzhang.touchfish.repository.HupuRepository;
 import com.tonyzhang.touchfish.repository.V2Repository;
 import com.tonyzhang.touchfish.repository.ZhihuRepository;
 import org.slf4j.Logger;
@@ -25,6 +27,9 @@ public class WebPipeline implements Pipeline {
     @Autowired
     ZhihuRepository zhihuRepository;
 
+    @Autowired
+    HupuRepository hupuRepository;
+
     @Override
     public void process(ResultItems resultItems, Task task) {
         for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
@@ -41,6 +46,14 @@ public class WebPipeline implements Pipeline {
                 if (zhihuRepository.findEntityByLink(zhihu.getLink()) == null && zhihu.getLink() != null) {
                     logger.info("Entity found (zhihu), not in database, entity will be saved, title: {} \t Link: {}", zhihu.getTitle(), zhihu.getLink());
                     zhihuRepository.saveEntity(zhihu);
+                } else {
+                    logger.info("Entity already stored in database or not found in the web page, aborted.");
+                }
+            } else if (entry.getKey().contains("hupu")) {
+                HupuEntity hupu = (HupuEntity) entry.getValue();
+                if (hupuRepository.findEntityByLink(hupu.getLink()) == null && hupu.getLink() != null) {
+                    logger.info("Entity found (hupu), not in database, entity will be saved, title: {} \t Link: {}", hupu.getTitle(), hupu.getLink());
+                    hupuRepository.saveEntity(hupu);
                 } else {
                     logger.info("Entity already stored in database or not found in the web page, aborted.");
                 }
