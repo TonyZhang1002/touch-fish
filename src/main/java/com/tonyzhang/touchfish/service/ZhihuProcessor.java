@@ -1,12 +1,10 @@
 package com.tonyzhang.touchfish.service;
 
-import com.alibaba.fastjson.JSON;
 import com.tonyzhang.touchfish.entity.ZhihuEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.JsonPathSelector;
 
@@ -45,11 +43,12 @@ public class ZhihuProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider spider = Spider.create(new ZhihuProcessor());
-        spider.addUrl("http://www.zhihu.com/billboard");
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-    }
+    // For test use only
+//    public static void main(String[] args) {
+//        Spider spider = Spider.create(new ZhihuProcessor());
+//        spider.addUrl("http://www.zhihu.com/billboard");
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//    }
 }

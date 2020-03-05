@@ -80,4 +80,10 @@ public class MainService {
         logger.info("Time now : {}, zhihu collection will be dropped.", dateFormat.format(new Date()));
         zhihuRepository.dropAll();
     }
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void dropHupu() {
+        logger.info("Time now : {}, hupu collection will be dropped.", dateFormat.format(new Date()));
+        hupuRepository.dropAll();
+    }
 }

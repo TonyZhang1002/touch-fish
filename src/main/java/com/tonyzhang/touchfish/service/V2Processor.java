@@ -3,7 +3,6 @@ package com.tonyzhang.touchfish.service;
 import com.tonyzhang.touchfish.entity.V2Entity;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 public class V2Processor implements PageProcessor {
@@ -46,12 +45,13 @@ public class V2Processor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider spider = Spider.create(new V2Processor());
-        spider.addUrl("http://www.v2ex.com/?tab=hot");
-        spider.addPipeline(new WebPipeline());
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-    }
+    // For test use only
+//    public static void main(String[] args) {
+//        Spider spider = Spider.create(new V2Processor());
+//        spider.addUrl("http://www.v2ex.com/?tab=hot");
+//        spider.addPipeline(new WebPipeline());
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//    }
 }

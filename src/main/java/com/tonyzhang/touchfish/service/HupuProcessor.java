@@ -3,7 +3,6 @@ package com.tonyzhang.touchfish.service;
 import com.tonyzhang.touchfish.entity.HupuEntity;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 public class HupuProcessor implements PageProcessor {
@@ -42,11 +41,12 @@ public class HupuProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider spider = Spider.create(new HupuProcessor());
-        spider.addUrl("http://bbs.hupu.com/all-gambia");
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-    }
+    // For test use only
+//    public static void main(String[] args) {
+//        Spider spider = Spider.create(new HupuProcessor());
+//        spider.addUrl("http://bbs.hupu.com/all-gambia");
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//    }
 }
