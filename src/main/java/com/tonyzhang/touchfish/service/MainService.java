@@ -1,5 +1,6 @@
 package com.tonyzhang.touchfish.service;
 
+import com.tonyzhang.touchfish.entity.BaseEntity;
 import com.tonyzhang.touchfish.repository.HupuRepository;
 import com.tonyzhang.touchfish.repository.V2Repository;
 import com.tonyzhang.touchfish.repository.ZhihuRepository;
@@ -12,6 +13,7 @@ import us.codecraft.webmagic.Spider;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -33,31 +35,31 @@ public class MainService {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-//    @Scheduled(cron = "0 0/1 * * * *")
-//    public void scheduled() {
-//        logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
-//        Spider spider = Spider.create(new V2Processor());
-//        spider.addUrl("http://www.v2ex.com/?tab=hot");
-//        spider.addPipeline(wp);
-//        spider.thread(5);
-//        spider.setExitWhenComplete(true);
-//        spider.start();
-//        spider.stop();
-//    }
-//
-//    @Scheduled(cron = "0 0/1 * * * *")
-//    public void scheduledZhihu() {
-//        logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
-//        Spider spider = Spider.create(new ZhihuProcessor());
-//        spider.addUrl("http://www.zhihu.com/billboard");
-//        spider.addPipeline(wp);
-//        spider.thread(5);
-//        spider.setExitWhenComplete(true);
-//        spider.start();
-//        spider.stop();
-//    }
-
     @Scheduled(cron = "0 0/1 * * * *")
+    public void scheduled() {
+        logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
+        Spider spider = Spider.create(new V2Processor());
+        spider.addUrl("http://www.v2ex.com/?tab=hot");
+        spider.addPipeline(wp);
+        spider.thread(5);
+        spider.setExitWhenComplete(true);
+        spider.start();
+        spider.stop();
+    }
+
+    @Scheduled(cron = "20 0/1 * * * *")
+    public void scheduledZhihu() {
+        logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
+        Spider spider = Spider.create(new ZhihuProcessor());
+        spider.addUrl("http://www.zhihu.com/billboard");
+        spider.addPipeline(wp);
+        spider.thread(5);
+        spider.setExitWhenComplete(true);
+        spider.start();
+        spider.stop();
+    }
+
+    @Scheduled(cron = "40 0/1 * * * *")
     public void scheduledHupu() {
         logger.info("----Mission Start for hupu : {}", dateFormat.format(new Date()));
         Spider spider = Spider.create(new HupuProcessor());
@@ -85,5 +87,17 @@ public class MainService {
     public void dropHupu() {
         logger.info("Time now : {}, hupu collection will be dropped.", dateFormat.format(new Date()));
         hupuRepository.dropAll();
+    }
+
+    public List<? extends BaseEntity> getAllEntities(String website) {
+        logger.info("Trying to retrieve entities from {}", website);
+        switch (website) {
+            case "hupu": return hupuRepository.getAllEntities();
+            case "zhihu": return zhihuRepository.getAllEntities();
+            case "v2": return v2Repository.getAllEntities();
+            default:
+                logger.info("Error in retrieving entities, wrong website name {}", website);
+                return null;
+        }
     }
 }

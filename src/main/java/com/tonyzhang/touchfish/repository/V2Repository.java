@@ -1,12 +1,15 @@
 package com.tonyzhang.touchfish.repository;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
+import com.tonyzhang.touchfish.entity.HupuEntity;
 import com.tonyzhang.touchfish.entity.V2Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class V2Repository implements BaseRepository {
@@ -23,6 +26,11 @@ public class V2Repository implements BaseRepository {
         Query query = new Query(Criteria.where("link").is(link));
         V2Entity v2e = mongoTemplate.findOne(query, V2Entity.class);
         return v2e;
+    }
+
+    @Override
+    public List<? extends BaseEntity> getAllEntities() {
+        return mongoTemplate.findAll(V2Entity.class);
     }
 
     @Override

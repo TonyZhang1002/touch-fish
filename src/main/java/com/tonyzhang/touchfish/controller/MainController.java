@@ -11,8 +11,24 @@ public class MainController {
     @Autowired
     private MainService ms;
 
-    @GetMapping(value = "")
-    public String formPage(Model model) {
-        return "hahaha";
+    @GetMapping(value = "/hupu")
+    public String hupuPage(Model model) {
+        model.addAttribute("mainTitle", "虎扑热榜");
+        model.addAttribute("entities", ms.getAllEntities("hupu"));
+        return "hot";
+    }
+
+    @GetMapping(value = "/v2")
+    public String v2Page(Model model) {
+        model.addAttribute("mainTitle", "v2ray热榜");
+        model.addAttribute("entities", ms.getAllEntities("v2"));
+        return "hot";
+    }
+
+    @GetMapping(value = "/zhihu")
+    public String zhihuPage(Model model) {
+        model.addAttribute("mainTitle", "知乎热榜");
+        model.addAttribute("entities", ms.getAllEntities("zhihu"));
+        return "hot";
     }
 }

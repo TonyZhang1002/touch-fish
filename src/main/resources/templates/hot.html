@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Mo Fish</title>
+</head>
+<body>
+<h1 th:text="${mainTitle}"></h1>
+<ol>
+    <li th:each="entity,Stat : ${entities}">
+        <a th:text="${entity.title}" th:href="${entity.link}"></a>
+    </li>
+</ol>
+</body>
+</html>
