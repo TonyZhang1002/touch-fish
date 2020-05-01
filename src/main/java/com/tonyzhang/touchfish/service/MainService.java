@@ -35,7 +35,7 @@ public class MainService {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "0 0/1 * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void scheduled() {
         logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
         Spider spider = Spider.create(new V2Processor());
@@ -47,7 +47,7 @@ public class MainService {
         spider.stop();
     }
 
-    @Scheduled(cron = "20 0/1 * * * *")
+    @Scheduled(cron = "0 20 * * * *")
     public void scheduledZhihu() {
         logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
         Spider spider = Spider.create(new ZhihuProcessor());
@@ -59,7 +59,7 @@ public class MainService {
         spider.stop();
     }
 
-    @Scheduled(cron = "40 0/1 * * * *")
+    @Scheduled(cron = "0 40 * * * *")
     public void scheduledHupu() {
         logger.info("----Mission Start for hupu : {}", dateFormat.format(new Date()));
         Spider spider = Spider.create(new HupuProcessor());
