@@ -31,7 +31,18 @@ public class HupuEntity implements BaseEntity {
         this.link = link;
     }
 
+    @Override
+    public int getID() {
+        return id;
+    }
+
+    @Override
+    public void setID(int id) {
+        this.id = id;
+    }
+
     private String title;
     private String info;
     private String link;
+    private int id;
 }

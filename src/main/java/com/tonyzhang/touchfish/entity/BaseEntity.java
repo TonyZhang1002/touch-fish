@@ -12,4 +12,8 @@ public interface BaseEntity {
     String getLink();
 
     void setLink(String link);
+
+    int getID();
+
+    void setID(int id);
 }

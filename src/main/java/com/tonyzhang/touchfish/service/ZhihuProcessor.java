@@ -23,6 +23,7 @@ public class ZhihuProcessor implements PageProcessor {
     public void process(Page page) {
         String origin = page.getHtml().xpath("//*[@id=\"js-initialData\"]").toString().replaceAll("<script[^>]*>", "").replaceAll("</script>", "");
         List<String> hots = new JsonPathSelector("$.initialState.topstory.hotList[*]").selectList(origin);
+        int index = 1;
         for (String hot : hots) {
             String title = new JsonPathSelector("$.target.titleArea.text").select(hot);
             String info = new JsonPathSelector("$.target.metricsArea.text").select(hot);
@@ -32,6 +33,7 @@ public class ZhihuProcessor implements PageProcessor {
             zhihu.setTitle(title);
             zhihu.setInfo(info);
             zhihu.setLink(link);
+            zhihu.setID(index++);
             // Feed to pipeline
             page.putField("zhihu" + title, zhihu);
         }

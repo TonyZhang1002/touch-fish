@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,13 +28,14 @@ public class HupuRepository implements BaseRepository {
     }
 
     @Override
-    public List<? extends BaseEntity> getAllEntities() {
-        return mongoTemplate.findAll(HupuEntity.class);
+    public BaseEntity findEntityByID(int id) {
+        Query query = new Query(Criteria.where("id").is(id));
+        return mongoTemplate.findOne(query, HupuEntity.class);
     }
 
     @Override
-    public void updateEntity(BaseEntity baseEntity) {
-
+    public List<? extends BaseEntity> getAllEntities() {
+        return mongoTemplate.findAll(HupuEntity.class);
     }
 
     @Override

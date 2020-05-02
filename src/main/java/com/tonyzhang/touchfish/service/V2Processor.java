@@ -35,6 +35,7 @@ public class V2Processor implements PageProcessor {
             v2e.setInfo(info);
             v2e.setAuthor(author);
             v2e.setLink(link);
+            v2e.setID(i-1);
             // Feed to pipeline
             page.putField("v2Ex" + title, v2e);
         }

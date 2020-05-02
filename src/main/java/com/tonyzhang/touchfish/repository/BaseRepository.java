@@ -9,9 +9,9 @@ public interface BaseRepository {
 
     BaseEntity findEntityByLink(String link);
 
-    List<? extends BaseEntity> getAllEntities();
+    BaseEntity findEntityByID(int id);
 
-    void updateEntity(BaseEntity baseEntity);
+    List<? extends BaseEntity> getAllEntities();
 
     void deleteEntityByLink(String link);
 

@@ -31,6 +31,7 @@ public class HupuProcessor implements PageProcessor {
             hupu.setTitle(title);
             hupu.setInfo(info);
             hupu.setLink(link);
+            hupu.setID(i);
             // Feed to pipeline
             page.putField("hupu" + title, hupu);
         }
