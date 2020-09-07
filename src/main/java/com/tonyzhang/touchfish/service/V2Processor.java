@@ -33,14 +33,14 @@ public class V2Processor implements PageProcessor {
             String link = fullLink == null ? "" : fullLink.split("#")[0];
             // Create a new entity and put crawled info in
             EntityFactory entityFactory = new EntityFactory();
-            V2Entity v2e = (V2Entity) entityFactory.getEntity("v2Ex");
+            V2Entity v2e = (V2Entity) entityFactory.getEntity("v2ex");
             v2e.setTitle(title);
             v2e.setInfo(info);
             v2e.setAuthor(author);
             v2e.setLink(link);
             v2e.setID(i-1);
             // Feed to pipeline
-            page.putField("v2Ex:" + title, v2e);
+            page.putField("v2ex:" + title, v2e);
         }
     }
 

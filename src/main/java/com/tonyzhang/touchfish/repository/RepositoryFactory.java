@@ -20,7 +20,7 @@ public class RepositoryFactory {
     public BaseRepository getRepository (String type) {
         if(type == null){
             return null;
-        } else if (type.contains("v2Ex")) {
+        } else if (type.contains("v2ex")) {
             return v2Repository;
         } else if (type.contains("zhihu")) {
             return zhihuRepository;

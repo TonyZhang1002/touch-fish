@@ -18,10 +18,10 @@ public class MainController {
         return "hot";
     }
 
-    @GetMapping(value = "/v2")
+    @GetMapping(value = "/v2ex")
     public String v2Page(Model model) {
         model.addAttribute("mainTitle", "v2ray热榜");
-        model.addAttribute("entities", ms.getAllEntities("v2"));
+        model.addAttribute("entities", ms.getAllEntities("v2ex"));
         return "hot";
     }
 
