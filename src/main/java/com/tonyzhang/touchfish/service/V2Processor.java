@@ -1,5 +1,7 @@
 package com.tonyzhang.touchfish.service;
 
+import com.tonyzhang.touchfish.entity.BaseEntity;
+import com.tonyzhang.touchfish.entity.EntityFactory;
 import com.tonyzhang.touchfish.entity.V2Entity;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -30,14 +32,15 @@ public class V2Processor implements PageProcessor {
             String fullLink = page.getHtml().xpath(titleXPath).links().toString();
             String link = fullLink == null ? "" : fullLink.split("#")[0];
             // Create a new entity and put crawled info in
-            V2Entity v2e = new V2Entity();
+            EntityFactory entityFactory = new EntityFactory();
+            V2Entity v2e = (V2Entity) entityFactory.getEntity("v2Ex");
             v2e.setTitle(title);
             v2e.setInfo(info);
             v2e.setAuthor(author);
             v2e.setLink(link);
             v2e.setID(i-1);
             // Feed to pipeline
-            page.putField("v2Ex" + title, v2e);
+            page.putField("v2Ex:" + title, v2e);
         }
     }
 

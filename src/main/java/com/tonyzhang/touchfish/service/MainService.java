@@ -35,7 +35,7 @@ public class MainService {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */1 * * * *")
     public void scheduled() {
         logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
         Spider spider = Spider.create(new V2Processor());
@@ -47,29 +47,29 @@ public class MainService {
         spider.stop();
     }
 
-    @Scheduled(cron = "20 */5 * * * *")
-    public void scheduledZhihu() {
-        logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new ZhihuProcessor());
-        spider.addUrl("http://www.zhihu.com/billboard");
-        spider.addPipeline(wp);
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-        spider.stop();
-    }
+//    @Scheduled(cron = "20 */1 * * * *")
+//    public void scheduledZhihu() {
+//        logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
+//        Spider spider = Spider.create(new ZhihuProcessor());
+//        spider.addUrl("http://www.zhihu.com/billboard");
+//        spider.addPipeline(wp);
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//        spider.stop();
+//    }
 
-    @Scheduled(cron = "40 */5 * * * *")
-    public void scheduledHupu() {
-        logger.info("----Mission Start for hupu : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new HupuProcessor());
-        spider.addUrl("http://bbs.hupu.com/all-gambia");
-        spider.addPipeline(wp);
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-        spider.stop();
-    }
+//    @Scheduled(cron = "40 */1 * * * *")
+//    public void scheduledHupu() {
+//        logger.info("----Mission Start for hupu : {}", dateFormat.format(new Date()));
+//        Spider spider = Spider.create(new HupuProcessor());
+//        spider.addUrl("http://bbs.hupu.com/all-gambia");
+//        spider.addPipeline(wp);
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//        spider.stop();
+//    }
 
     @Scheduled(cron = "0 0 0 * * *")
     public void dropV2() {

@@ -1,6 +1,7 @@
 package com.tonyzhang.touchfish.service;
 
-import com.tonyzhang.touchfish.entity.HupuEntity;
+import com.tonyzhang.touchfish.entity.BaseEntity;
+import com.tonyzhang.touchfish.entity.EntityFactory;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -27,13 +28,14 @@ public class HupuProcessor implements PageProcessor {
             String fullLink = page.getHtml().xpath(linkXPath).links().toString();
             String link = fullLink == null ? "" : fullLink.split("#")[0];
             // Create a new entity and put crawled info in
-            HupuEntity hupu = new HupuEntity();
+            EntityFactory entityFactory = new EntityFactory();
+            BaseEntity hupu = entityFactory.getEntity("hupu");
             hupu.setTitle(title);
             hupu.setInfo(info);
             hupu.setLink(link);
             hupu.setID(i);
             // Feed to pipeline
-            page.putField("hupu" + title, hupu);
+            page.putField("hupu:" + title, hupu);
         }
     }
 

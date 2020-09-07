@@ -1,6 +1,7 @@
 package com.tonyzhang.touchfish.service;
 
-import com.tonyzhang.touchfish.entity.ZhihuEntity;
+import com.tonyzhang.touchfish.entity.BaseEntity;
+import com.tonyzhang.touchfish.entity.EntityFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Page;
@@ -29,13 +30,14 @@ public class ZhihuProcessor implements PageProcessor {
             String info = new JsonPathSelector("$.target.metricsArea.text").select(hot);
             String link = new JsonPathSelector("$.target.link.url").select(hot);
             logger.info("Got entity in zhihu processor, Title: {} \t Link: {}", title, link);
-            ZhihuEntity zhihu = new ZhihuEntity();
+            EntityFactory entityFactory = new EntityFactory();
+            BaseEntity zhihu = entityFactory.getEntity("zhihu");
             zhihu.setTitle(title);
             zhihu.setInfo(info);
             zhihu.setLink(link);
             zhihu.setID(index++);
             // Feed to pipeline
-            page.putField("zhihu" + title, zhihu);
+            page.putField("zhihu:" + title, zhihu);
         }
 
     }

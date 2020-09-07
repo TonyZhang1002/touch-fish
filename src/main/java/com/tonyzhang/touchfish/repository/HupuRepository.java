@@ -2,19 +2,20 @@ package com.tonyzhang.touchfish.repository;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
 import com.tonyzhang.touchfish.entity.HupuEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class HupuRepository implements BaseRepository {
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
+
+    public HupuRepository(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Override
     public void saveEntity(BaseEntity hupu) {
@@ -28,7 +29,7 @@ public class HupuRepository implements BaseRepository {
     }
 
     @Override
-    public BaseEntity findEntityByID(int id) {
+    public HupuEntity findEntityByID(int id) {
         Query query = new Query(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query, HupuEntity.class);
     }

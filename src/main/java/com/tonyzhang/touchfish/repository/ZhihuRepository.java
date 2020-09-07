@@ -2,19 +2,20 @@ package com.tonyzhang.touchfish.repository;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
 import com.tonyzhang.touchfish.entity.ZhihuEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class ZhihuRepository implements BaseRepository{
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
+
+    public ZhihuRepository(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Override
     public void saveEntity(BaseEntity zhihu) {
@@ -28,7 +29,7 @@ public class ZhihuRepository implements BaseRepository{
     }
 
     @Override
-    public BaseEntity findEntityByID(int id) {
+    public ZhihuEntity findEntityByID(int id) {
         Query query = new Query(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query, ZhihuEntity.class);
     }
