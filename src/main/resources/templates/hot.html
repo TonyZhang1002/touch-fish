@@ -2,19 +2,25 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/hot.css">
     <title>Mo Fish</title>
-    <style>
-        body {
-            background-color: #93B874;
-        }
-    </style>
 </head>
 <body>
-<h1 th:text="${mainTitle}"></h1>
-<ol>
-    <li th:each="entity,Stat : ${entities}">
-        <a th:text="${entity.title}" th:href="${entity.link}"></a>
-    </li>
-</ol>
+<div class="mainList">
+    <div id="wrap">
+        <div id="v2ex"><a class="webSelector" href="/v2ex">V2EX</a></div>
+        <div id="hupu"><a class="webSelector" href="/hupu">虎扑</a></div>
+        <div id="zhihu"><a class="webSelector" href="/zhihu">知乎</a></div>
+    </div>
+    <ol>
+        <li th:each="entity,Stat : ${entities}">
+            <span th:text="${Stat.index + 1}"></span>
+            <a class="listSelector" th:text="${entity.title}" th:href="${entity.link}" target="_blank"></a>
+        </li>
+    </ol>
+</div>
 </body>
 </html>
