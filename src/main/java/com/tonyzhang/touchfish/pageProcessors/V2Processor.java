@@ -1,6 +1,5 @@
 package com.tonyzhang.touchfish.pageProcessors;
 
-import com.tonyzhang.touchfish.entity.BaseEntity;
 import com.tonyzhang.touchfish.entity.EntityFactory;
 import com.tonyzhang.touchfish.entity.V2Entity;
 import us.codecraft.webmagic.Page;
@@ -9,6 +8,14 @@ import us.codecraft.webmagic.processor.PageProcessor;
 
 public class V2Processor implements PageProcessor {
 
+    // Singleton Instance
+    private static V2Processor instance = new V2Processor();
+    // Make construction method private
+    private V2Processor() {}
+    // Public method to get the single object
+    public static V2Processor getInstance() {
+        return instance;
+    }
     private Site site = Site.me()
             .setDomain("www.v2ex.com")
             .setSleepTime(100)

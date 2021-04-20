@@ -45,7 +45,7 @@ public class MainService {
     @Scheduled(cron = "0 0/5 * * * *")
     public void scheduled() {
         logger.info("----Mission Start for v2ex : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new V2Processor());
+        Spider spider = Spider.create(V2Processor.getInstance());
         spider.addUrl("http://www.v2ex.com/?tab=hot");
         spider.addPipeline(wp);
         spider.thread(5);
@@ -57,7 +57,7 @@ public class MainService {
     @Scheduled(cron = "0 1/5 * * * *")
     public void scheduledZhihu() {
         logger.info("----Mission Start for zhihu : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new ZhihuProcessor());
+        Spider spider = Spider.create(ZhihuProcessor.getInstance());
         spider.addUrl("http://www.zhihu.com/billboard");
         spider.addPipeline(wp);
         spider.thread(5);
@@ -69,7 +69,7 @@ public class MainService {
     @Scheduled(cron = "0 2/5 * * * *")
     public void scheduledHupu() {
         logger.info("----Mission Start for hupu : {}", dateFormat.format(new Date()));
-        Spider spider = Spider.create(new HupuProcessor());
+        Spider spider = Spider.create(HupuProcessor.getInstance());
         spider.addUrl("http://bbs.hupu.com/all-gambia");
         spider.addPipeline(wp);
         spider.thread(5);

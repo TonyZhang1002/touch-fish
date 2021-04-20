@@ -15,6 +15,14 @@ public class ZhihuProcessor implements PageProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(ZhihuProcessor.class);
 
+    // Singleton Instance
+    private static ZhihuProcessor instance = new ZhihuProcessor();
+    // Make construction method private
+    private ZhihuProcessor() {}
+    // Public method to get the single object
+    public static ZhihuProcessor getInstance() {
+        return instance;
+    }
     private Site site = Site.me()
             .setDomain("www.zhihu.com")
             .setSleepTime(100)

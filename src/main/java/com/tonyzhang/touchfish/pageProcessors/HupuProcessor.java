@@ -7,6 +7,14 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 public class HupuProcessor implements PageProcessor {
+    // Singleton Instance
+    private static HupuProcessor instance = new HupuProcessor();
+    // Make construction method private
+    private HupuProcessor() {}
+    // Public method to get the single object
+    public static HupuProcessor getInstance() {
+        return instance;
+    }
     private Site site = Site.me()
             .setDomain("bbs.hupu.com")
             .setSleepTime(100)
@@ -43,13 +51,4 @@ public class HupuProcessor implements PageProcessor {
     public Site getSite() {
         return site;
     }
-
-    // For test use only
-//    public static void main(String[] args) {
-//        Spider spider = Spider.create(new HupuProcessor());
-//        spider.addUrl("http://bbs.hupu.com/all-gambia");
-//        spider.thread(5);
-//        spider.setExitWhenComplete(true);
-//        spider.start();
-//    }
 }
