@@ -1,4 +1,4 @@
-package com.tonyzhang.touchfish.service;
+package com.tonyzhang.touchfish.pageProcessors;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
 import com.tonyzhang.touchfish.entity.EntityFactory;

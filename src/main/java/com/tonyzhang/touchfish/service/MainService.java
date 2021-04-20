@@ -1,6 +1,9 @@
 package com.tonyzhang.touchfish.service;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
+import com.tonyzhang.touchfish.pageProcessors.HupuProcessor;
+import com.tonyzhang.touchfish.pageProcessors.V2Processor;
+import com.tonyzhang.touchfish.pageProcessors.ZhihuProcessor;
 import com.tonyzhang.touchfish.repository.HupuRepository;
 import com.tonyzhang.touchfish.repository.RepositoryFactory;
 import com.tonyzhang.touchfish.repository.V2Repository;
