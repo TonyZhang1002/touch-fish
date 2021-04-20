@@ -2,7 +2,7 @@ package com.tonyzhang.touchfish.service;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
 import com.tonyzhang.touchfish.repository.BaseRepository;
-import com.tonyzhang.touchfish.repository.RepositoryFactory;
+import com.tonyzhang.touchfish.factories.RepositoryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

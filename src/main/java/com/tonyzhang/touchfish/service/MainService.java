@@ -5,7 +5,7 @@ import com.tonyzhang.touchfish.pageProcessors.HupuProcessor;
 import com.tonyzhang.touchfish.pageProcessors.V2Processor;
 import com.tonyzhang.touchfish.pageProcessors.ZhihuProcessor;
 import com.tonyzhang.touchfish.repository.HupuRepository;
-import com.tonyzhang.touchfish.repository.RepositoryFactory;
+import com.tonyzhang.touchfish.factories.RepositoryFactory;
 import com.tonyzhang.touchfish.repository.V2Repository;
 import com.tonyzhang.touchfish.repository.ZhihuRepository;
 import org.slf4j.Logger;

@@ -1,4 +1,9 @@
-package com.tonyzhang.touchfish.entity;
+package com.tonyzhang.touchfish.factories;
+
+import com.tonyzhang.touchfish.entity.BaseEntity;
+import com.tonyzhang.touchfish.entity.HupuEntity;
+import com.tonyzhang.touchfish.entity.V2Entity;
+import com.tonyzhang.touchfish.entity.ZhihuEntity;
 
 public class EntityFactory {
 

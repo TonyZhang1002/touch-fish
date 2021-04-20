@@ -1,7 +1,7 @@
 package com.tonyzhang.touchfish.pageProcessors;
 
 import com.tonyzhang.touchfish.entity.BaseEntity;
-import com.tonyzhang.touchfish.entity.EntityFactory;
+import com.tonyzhang.touchfish.factories.EntityFactory;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

@@ -1,5 +1,9 @@
-package com.tonyzhang.touchfish.repository;
+package com.tonyzhang.touchfish.factories;
 
+import com.tonyzhang.touchfish.repository.BaseRepository;
+import com.tonyzhang.touchfish.repository.HupuRepository;
+import com.tonyzhang.touchfish.repository.V2Repository;
+import com.tonyzhang.touchfish.repository.ZhihuRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

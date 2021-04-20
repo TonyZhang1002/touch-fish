@@ -1,6 +1,6 @@
 package com.tonyzhang.touchfish.pageProcessors;
 
-import com.tonyzhang.touchfish.entity.EntityFactory;
+import com.tonyzhang.touchfish.factories.EntityFactory;
 import com.tonyzhang.touchfish.entity.V2Entity;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
